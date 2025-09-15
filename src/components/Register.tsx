@@ -93,27 +93,27 @@ const Register: React.FC = () => {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!validateForm()) {
-      return;
-    }
+      e.preventDefault();
+      if (!validateForm()) {
+        return;
+      }
 
-    setIsLoading(true);
-    setIsSuccess(false);
-    try {
-      // Corrected line
-      await registerStudent(student); 
-      setMessage(`Student registered successfully! Now proceeding to payment.`);
-      setIsSuccess(true);
-      
-      handlePayment(100);
-      
-    } catch (err: any) {
-      setMessage(`Error: ${err.response?.data?.error || err.message}`);
+      setIsLoading(true);
       setIsSuccess(false);
-    } finally {
-      setIsLoading(false);
-    }
+      try {
+        // The corrected line with the unused variable removed.
+        await registerStudent(student); 
+        setMessage(`Student registered successfully! Now proceeding to payment.`);
+        setIsSuccess(true);
+        
+        handlePayment(100);
+        
+      } catch (err: any) {
+        setMessage(`Error: ${err.response?.data?.error || err.message}`);
+        setIsSuccess(false);
+      } finally {
+        setIsLoading(false);
+      }
   };
 
   return (
