@@ -3,8 +3,6 @@ import { registerStudent, createOrder, verifyPayment } from "../api/api";
 import type { Student } from "../api/api";
 import "./Register.css";
 
-// This is a global interface for the Razorpay window object.
-// We need to declare it to prevent TypeScript errors.
 declare global {
   interface Window {
     Razorpay: any;
@@ -45,19 +43,17 @@ const Register: React.FC = () => {
 
   const handlePayment = async (amount: number) => {
     try {
-      // Call the backend to create a Razorpay order
       const { data } = await createOrder(student.roll, amount);
 
       const options = {
-        key: "YOUR_RAZORPAY_KEY_ID", // Replace with your actual Key ID
-        amount: amount * 100, // Amount in paise
+        key: "YOUR_RAZORPAY_KEY_ID",
+        amount: amount * 100,
         currency: "INR",
         name: "RCCIIT Alumni Association",
         description: "Alumni Registration Fee",
         order_id: data.order.id,
         handler: async function (response: any) {
           try {
-            // Verify the payment on the backend
             const verificationResponse = await verifyPayment({
               razorpay_payment_id: response.razorpay_payment_id,
               razorpay_order_id: response.razorpay_order_id,
@@ -105,12 +101,12 @@ const Register: React.FC = () => {
     setIsLoading(true);
     setIsSuccess(false);
     try {
-      const res = await registerStudent(student);
+      // Corrected line
+      await registerStudent(student); 
       setMessage(`Student registered successfully! Now proceeding to payment.`);
       setIsSuccess(true);
       
-      // Trigger payment after successful registration
-      handlePayment(100); // Pass the amount in Rupees here
+      handlePayment(100);
       
     } catch (err: any) {
       setMessage(`Error: ${err.response?.data?.error || err.message}`);
