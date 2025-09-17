@@ -1,0 +1,110 @@
+.dashboard-container {
+  max-width: 800px;
+  width: 90%;
+  margin: 2rem auto;
+  padding: 2.5rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.dashboard-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 0 0 0.5rem;
+}
+
+.dashboard-header p {
+  font-size: 1rem;
+  color: #7f8c8d;
+  margin-bottom: 2rem;
+}
+
+.summary-cards {
+  display: flex;
+  justify-content: space-around;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.summary-card {
+  background-color: #f1f1f1;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  min-width: 150px;
+}
+
+.summary-card.paid-card {
+  background-color: #d4edda;
+}
+
+.summary-card h3 {
+  font-size: 1rem;
+  margin: 0 0 0.5rem;
+  color: #333;
+}
+
+.summary-card p {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #34495e;
+  margin: 0;
+}
+
+.students-list {
+  text-align: left;
+  margin-top: 2rem;
+}
+
+.students-list h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #34495e;
+  margin-bottom: 1rem;
+}
+
+.students-list ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.student-card {
+  background-color: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.student-card h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
+  color: #34495e;
+}
+
+.student-card p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.logout-button {
+  background-color: #e74c3c;
+  color: #ffffff;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  margin-top: 2rem;
+}
+
+.logout-button:hover {
+  background-color: #c0392b;
+}

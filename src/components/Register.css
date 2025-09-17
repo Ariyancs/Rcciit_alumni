@@ -105,6 +105,31 @@
   transform: none;
 }
 
+.form-footer {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.form-footer p {
+  font-size: 1rem;
+  color: #7f8c8d;
+  margin-bottom: 0.5rem;
+}
+
+.login-button {
+  background: none;
+  border: none;
+  color: #3498db;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+}
+
+.login-button:hover {
+  color: #2980b9;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { registerStudent, createOrder, verifyPayment } from "../api/api";
 import type { Student } from "../api/api";
 import "./Register.css";
@@ -18,17 +19,19 @@ const Register: React.FC = () => {
     department: "",
     phone: "",
     admission_year: new Date().getFullYear(),
+    password: "", // Add password to initial state
   });
   const [message, setMessage] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setStudent({ ...student, [e.target.name]: e.target.value });
   };
 
   const validateForm = () => {
-    if (!student.name || !student.email || !student.roll || !student.batch || !student.department || !student.phone) {
+    if (!student.name || !student.email || !student.roll || !student.batch || !student.department || !student.phone || !student.password) {
       setMessage("Please fill out all required fields.");
       return false;
     }
@@ -101,12 +104,11 @@ const Register: React.FC = () => {
       setIsLoading(true);
       setIsSuccess(false);
       try {
-        // The corrected line with the unused variable removed.
         await registerStudent(student); 
         setMessage(`Student registered successfully! Now proceeding to payment.`);
         setIsSuccess(true);
         
-        handlePayment(100);
+        handlePayment(100); 
         
       } catch (err: any) {
         setMessage(`Error: ${err.response?.data?.error || err.message}`);
@@ -114,6 +116,10 @@ const Register: React.FC = () => {
       } finally {
         setIsLoading(false);
       }
+  };
+  
+  const handleLogin = () => {
+    navigate('/login');
   };
 
   return (
@@ -137,11 +143,18 @@ const Register: React.FC = () => {
         <input type="text" name="department" placeholder="Department" value={student.department} onChange={handleChange} className="form-input" disabled={isLoading}/>
         <input type="text" name="phone" placeholder="Phone Number" value={student.phone} onChange={handleChange} className="form-input" disabled={isLoading}/>
         <input type="number" name="admission_year" placeholder="Admission Year" value={student.admission_year} onChange={handleChange} className="form-input" disabled={isLoading}/>
+        <input type="password" name="password" placeholder="Password" value={student.password} onChange={handleChange} className="form-input" disabled={isLoading}/> {/* New password field */}
         
         <button type="submit" className="form-button" disabled={isLoading}>
           {isLoading ? "Submitting..." : "Register Now"}
         </button>
       </form>
+      <div className="form-footer">
+        <p>Already registered?</p>
+        <button onClick={handleLogin} className="login-button">
+          Log In
+        </button>
+      </div>
     </div>
   );
 };
